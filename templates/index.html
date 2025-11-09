@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Conversor NL ↔ CPC</title>
+</head>
+<body>
+  <h2>Conversor NL ↔ CPC</h2>
+
+  <form action="/traduzir" method="post">
+    <textarea name="texto" rows="4" cols="50" placeholder="Digite sua frase...">{{ entrada }}</textarea><br><br>
+
+    <select name="direcao">
+      <option value="nl_to_cpc" {% if direcao == 'nl_to_cpc' %}selected{% endif %}>NL → CPC</option>
+      <option value="cpc_to_nl" {% if direcao == 'cpc_to_nl' %}selected{% endif %}>CPC → NL</option>
+    </select><br><br>
+
+    <button type="submit">Traduzir</button>
+  </form>
+
+  {% if resultado %}
+    <h3>Resultado:</h3>
+    <p>{{ resultado }}</p>
+  {% endif %}
+</body>
+</html>
