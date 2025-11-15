@@ -1,2 +1,0 @@
-#  CPC convertor
-Trabalho acadêmico
