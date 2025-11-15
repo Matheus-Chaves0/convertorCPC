@@ -1,0 +1,298 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* CPC Tradutor Design System - Light Mode */
+    --background: 210 17% 98%;
+    --foreground: 210 29% 24%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 210 29% 24%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 29% 24%;
+
+    /* Primary - Vermelho CPC */
+    --primary: 354 70% 54%;
+    --primary-foreground: 210 17% 98%;
+    --primary-hover: 354 70% 48%;
+    --primary-active: 354 70% 42%;
+
+    /* Secondary - Cinza neutro */
+    --secondary: 210 11% 71%;
+    --secondary-foreground: 210 29% 24%;
+    --secondary-hover: 210 11% 65%;
+
+    /* Muted - Cinza claro */
+    --muted: 210 17% 95%;
+    --muted-foreground: 210 11% 46%;
+
+    /* Accent - Preto azulado */
+    --accent: 210 50% 23%;
+    --accent-foreground: 210 17% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 17% 98%;
+
+    --border: 210 17% 90%;
+    --input: 210 17% 90%;
+    --ring: 354 70% 54%;
+
+    --radius: 0.75rem;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    --shadow-md: 0 6px 12px -2px rgb(0 0 0 / 0.15);
+    --shadow-lg: 0 10px 20px -3px rgb(0 0 0 / 0.2);
+
+    /* Transitions */
+    --transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark {
+    --background: 210 29% 24%;
+    --foreground: 210 17% 98%;
+
+    --card: 210 25% 20%;
+    --card-foreground: 210 17% 98%;
+
+    --popover: 210 25% 20%;
+    --popover-foreground: 210 17% 98%;
+
+    --primary: 354 70% 54%;
+    --primary-foreground: 210 17% 98%;
+    --primary-hover: 354 70% 60%;
+    --primary-active: 354 70% 48%;
+
+    --secondary: 210 11% 35%;
+    --secondary-foreground: 210 17% 98%;
+    --secondary-hover: 210 11% 40%;
+
+    --muted: 210 25% 28%;
+    --muted-foreground: 210 11% 71%;
+
+    --accent: 210 17% 98%;
+    --accent-foreground: 210 29% 24%;
+
+    --destructive: 0 62.8% 50%;
+    --destructive-foreground: 210 17% 98%;
+
+    --border: 210 25% 32%;
+    --input: 210 25% 32%;
+    --ring: 354 70% 54%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Scroll suave e performance */
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+
+  /* Touch-friendly em mobile */
+  @media (hover: none) and (pointer: coarse) {
+    * {
+      -webkit-tap-highlight-color: transparent;
+    }
+  }
+
+  /* Tipografia responsiva */
+  h1 {
+    @apply text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-accent;
+  }
+
+  h2 {
+    @apply text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-tight text-accent;
+  }
+
+  h3 {
+    @apply text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight;
+  }
+
+  h4 {
+    @apply text-lg sm:text-xl font-semibold;
+  }
+
+  h5 {
+    @apply text-base sm:text-lg font-semibold;
+  }
+
+  h6 {
+    @apply text-sm sm:text-base font-semibold;
+  }
+
+  p {
+    @apply text-sm sm:text-base leading-relaxed;
+  }
+
+  /* Focus states visíveis para acessibilidade */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+
+  button:focus-visible,
+  a:focus-visible {
+    @apply outline-none ring-2 ring-primary ring-offset-2 ring-offset-background;
+  }
+}
+
+@layer utilities {
+  .shadow-custom-sm {
+    box-shadow: var(--shadow-sm);
+  }
+
+  .shadow-custom {
+    box-shadow: var(--shadow);
+  }
+
+  .shadow-custom-md {
+    box-shadow: var(--shadow-md);
+  }
+
+  .shadow-custom-lg {
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* Touch-friendly: mínimo 44x44px para elementos interativos */
+  .touch-target {
+    @apply min-h-[44px] min-w-[44px] flex items-center justify-center;
+  }
+
+  /* Espaçamento adequado para mobile */
+  .mobile-padding {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+
+  .mobile-gap {
+    @apply gap-3 sm:gap-4 lg:gap-6;
+  }
+
+  /* Tooltip CSS puro - responsivo */
+  .tooltip {
+    @apply relative inline-block;
+  }
+
+  .tooltip .tooltip-text {
+    @apply invisible absolute z-50 bg-accent text-accent-foreground text-xs rounded-lg py-2 px-3 
+           opacity-0 transition-opacity duration-300 whitespace-nowrap;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  @media (max-width: 768px) {
+    .tooltip .tooltip-text {
+      @apply text-[10px] py-1 px-2;
+    }
+  }
+
+  .tooltip .tooltip-text::after {
+    content: "";
+    @apply absolute border-4 border-solid;
+    border-color: hsl(var(--accent)) transparent transparent transparent;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .tooltip:hover .tooltip-text {
+    @apply visible opacity-100;
+  }
+
+  /* Touch devices - show on tap */
+  @media (hover: none) and (pointer: coarse) {
+    .tooltip:active .tooltip-text {
+      @apply visible opacity-100;
+    }
+  }
+
+  /* Button press effect - otimizado */
+  .btn-press {
+    @apply transition-transform duration-75 active:scale-95;
+    will-change: transform;
+  }
+
+  /* Success/Error states com contraste adequado */
+  .input-success {
+    @apply border-green-600 focus:ring-green-600 focus:border-green-600;
+  }
+
+  .input-error {
+    @apply border-destructive focus:ring-destructive focus:border-destructive;
+  }
+
+  /* Scroll animations - otimizadas */
+  .scroll-fade-in {
+    @apply opacity-0 translate-y-8 transition-all duration-700 ease-out;
+    will-change: opacity, transform;
+  }
+
+  .scroll-fade-in.visible {
+    @apply opacity-100 translate-y-0;
+    will-change: auto;
+  }
+
+  /* Performance - animações otimizadas */
+  .animate-optimized {
+    will-change: transform, opacity;
+  }
+
+  .animate-optimized.done {
+    will-change: auto;
+  }
+
+  /* Contraste adequado - estados de foco */
+  .focus-ring-strong {
+    @apply focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary 
+           focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+  }
+
+  /* Grid responsivo flexível */
+  .responsive-grid {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6;
+  }
+
+  .responsive-grid-2 {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6;
+  }
+
+  /* Texto responsivo */
+  .text-responsive-sm {
+    @apply text-xs sm:text-sm;
+  }
+
+  .text-responsive {
+    @apply text-sm sm:text-base lg:text-lg;
+  }
+
+  .text-responsive-lg {
+    @apply text-base sm:text-lg lg:text-xl;
+  }
+
+  /* Skip to content - acessibilidade */
+  .skip-to-content {
+    @apply sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 
+           focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground 
+           focus:rounded-lg focus:shadow-custom-lg;
+  }
+}
